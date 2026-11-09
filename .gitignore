@@ -4,3 +4,5 @@ __pycache__/
 
 # Archivos temporales de Jupyter
 .ipynb_checkpoints/
+# Entorno virtual de Python
+.venv/
