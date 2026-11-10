@@ -8,3 +8,5 @@ __pycache__/
 .venv/
 # Archivos temporales de pytest
 .pytest_cache/
+# Sitio web generado automáticamente
+site/
