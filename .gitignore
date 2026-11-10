@@ -6,3 +6,5 @@ __pycache__/
 .ipynb_checkpoints/
 # Entorno virtual de Python
 .venv/
+# Archivos temporales de pytest
+.pytest_cache/
