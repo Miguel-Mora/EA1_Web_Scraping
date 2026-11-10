@@ -4,3 +4,9 @@ __pycache__/
 
 # Archivos temporales de Jupyter
 .ipynb_checkpoints/
+# Entorno virtual de Python
+.venv/
+# Archivos temporales de pytest
+.pytest_cache/
+# Sitio web generado automáticamente
+site/
