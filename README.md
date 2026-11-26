@@ -1,168 +1,252 @@
+
 # Análisis de información comercial mediante Web Scraping
 
-## Evidencias de aprendizaje 1 y 2
+## Evidencias de Aprendizaje 1, 2 y 3
 
 **Asignatura:** Programación para Análisis de Datos  
 **Institución:** Institución Universitaria Digital de Antioquia  
-**Producto analizado:** Apple iPhone 15 de 128 GB  
-**Plataforma:** Mercado Libre Colombia
+**Producto:** Apple iPhone 15 de 128 GB  
+**Plataforma de origen:** Mercado Libre Colombia
 
-## 1. Descripción del proyecto
+## 1. Introducción
 
-Este proyecto académico implementa técnicas de extracción y análisis
-de información comercial utilizando Python.
+Este proyecto académico aplica técnicas de extracción de información
+comercial, control de versiones, pruebas automatizadas e integración
+y despliegue continuo mediante herramientas de desarrollo de software.
 
-La Evidencia de Aprendizaje 1 desarrolló un ejercicio de Web Scraping
-sobre una publicación del Apple iPhone 15 de 128 GB en Mercado Libre
-Colombia.
+El proyecto se desarrolla progresivamente:
 
-Se utilizaron tres herramientas:
+- **EA1:** extracción de datos mediante BeautifulSoup, Selenium y Scrapy.
+- **EA2:** control de versiones, pruebas automatizadas, GitHub Actions
+  y publicación de un reporte HTML en GitHub Pages.
+- **EA3:** aplicación web interactiva desarrollada con Streamlit,
+  pruebas adicionales y despliegue mediante Streamlit Community Cloud.
 
-- BeautifulSoup.
-- Selenium.
-- Scrapy.
+Los datos proceden de una copia HTML local de una publicación comercial.
+No corresponden a precios actualizados en tiempo real.
 
-Las tres implementaciones procesan información a partir de un documento
-HTML almacenado localmente.
+## 2. Objetivo
 
-La Evidencia de Aprendizaje 2 continúa este proyecto mediante el uso
-de Git, GitHub y prácticas de DevOps.
+Implementar un proyecto reproducible de análisis de información comercial,
+incorporando control de versiones, pruebas automatizadas, integración
+continua y publicación de resultados mediante servicios en la nube.
 
-## 2. Objetivo general
+## 3. Datos y metodología
 
-Aplicar técnicas de extracción de datos y prácticas de control de
-versiones, documentación y automatización para fortalecer la
-reproducibilidad y mantenibilidad de un proyecto de software.
+La fuente utilizada es `iphone15_mercadolibre.html`, almacenada durante
+la EA1.
 
-## 3. Datos analizados
+Se analizan seis atributos comerciales:
 
-Se extraen los siguientes atributos comerciales:
-
-1. Nombre del producto.
+1. Producto.
 2. Precio en pesos colombianos.
 3. Vendedor.
-4. Estado del producto.
+4. Estado.
 5. Disponibilidad.
 6. URL de la publicación.
 
-Adicionalmente, los archivos CSV incluyen la fecha de procesamiento.
+Las herramientas BeautifulSoup, Selenium y Scrapy generaron los
+archivos CSV utilizados por la aplicación.
 
-## 4. Herramientas utilizadas
+El trabajo toma como referencia la metodología CRISP-DM para organizar
+la comprensión, preparación y análisis de los datos.
 
-- Python 3.11.
-- BeautifulSoup.
-- Selenium.
-- Scrapy.
+## 4. Tecnologías utilizadas
+
+- Python 3.11 para el desarrollo y las pruebas locales.
+- BeautifulSoup, Selenium y Scrapy.
 - pandas.
-- Git.
-- GitHub.
-- Visual Studio Code.
-- Jupyter Notebook.
+- Streamlit.
+- pytest.
+- Git y GitHub.
+- GitHub Actions.
+- GitHub Pages.
+- Streamlit Community Cloud.
+- Visual Studio Code y Jupyter Notebook.
 
 ## 5. Estructura del proyecto
 
 ```text
 EA1_Web_Scraping/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── tests/
+│   ├── test_resultados.py
+│   └── test_app.py
 ├── .gitignore
+├── app.py
+├── generar_reporte.py
 ├── iphone15_mercadolibre.html
 ├── Morales_Miguel_Analizando_EA1.ipynb
-├── spider_iphone15.py
+├── README.md
+├── requirements.txt
 ├── resultados_beautifulsoup.csv
 ├── resultados_selenium.csv
 ├── resultados_scrapy.csv
-└── README.md
+└── spider_iphone15.py
 ```
 
-## 6. Preparación del entorno
+La carpeta `.venv/`, las cachés y los archivos HTML generados
+localmente no se incluyen en el repositorio.
 
-### Crear un entorno virtual en Windows
+## 6. Instalación
+
+Clonar el repositorio:
+
+```powershell
+git clone https://github.com/Miguel-Mora/EA1_Web_Scraping.git
+cd EA1_Web_Scraping
+```
+
+Crear el entorno virtual:
 
 ```powershell
 python -m venv .venv
 ```
 
-### Activar el entorno
+Instalar las dependencias principales de EA3:
 
 ```powershell
-.\.venv\Scripts\Activate.ps1
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-### Instalar las dependencias
+Los comandos anteriores están preparados para PowerShell en Windows.
+
+Para reproducir el notebook y los procesos originales de extracción
+pueden requerirse otras bibliotecas, como BeautifulSoup, Selenium,
+Scrapy y lxml, según el procedimiento ejecutado.
+
+## 7. Ejecutar la aplicación
+
+Desde la carpeta principal del proyecto:
 
 ```powershell
-python -m pip install requests beautifulsoup4 selenium scrapy pandas lxml ipykernel
+.\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-### Abrir el notebook
+Abrir la dirección indicada por Streamlit, normalmente:
 
-Abrir `Morales_Miguel_Analizando_EA1.ipynb` en Visual Studio Code
-y seleccionar el intérprete del entorno virtual `.venv`.
+http://localhost:8501
 
-El archivo `iphone15_mercadolibre.html` debe encontrarse en la
-carpeta principal del proyecto.
+La aplicación permite:
 
-## 7. Metodología
+- Seleccionar BeautifulSoup, Selenium o Scrapy.
+- Consultar los datos comerciales almacenados.
+- Visualizar indicadores y tablas.
+- Comparar los precios obtenidos por cada método.
 
-El proyecto toma como referencia la metodología CRISP-DM para
-organizar la comprensión de los datos, su preparación y la
-evaluación descriptiva de los resultados.
+## 8. Pruebas automatizadas
 
-La extracción se realiza sobre una copia HTML local de la publicación.
+El proyecto utiliza pytest para validar los resultados y la
+aplicación web.
 
-Este enfoque permite reproducir el ejercicio sin depender de
-consultas en tiempo real a Mercado Libre.
+Ejecutar todas las pruebas:
 
-## 8. Resultados de la Evidencia 1
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/ -v
+```
 
-Se obtuvo un registro comercial mediante cada herramienta.
+Se implementaron **20 pruebas automatizadas**:
 
-En el análisis realizado se reportó:
+- 13 pruebas de la EA2 sobre los archivos CSV.
+- 7 pruebas de la EA3 sobre la aplicación Streamlit.
 
-- Completitud de los atributos seleccionados: 100 %.
-- Consistencia entre los tres métodos: 100 %.
-- Registros obtenidos: uno por herramienta.
+Las pruebas verifican la estructura y consistencia de los datos,
+así como el inicio de la aplicación, el selector y las tablas.
 
-Estos resultados corresponden a la publicación analizada y al
-archivo HTML utilizado.
-
-No deben interpretarse como una evaluación del comportamiento de
-las herramientas en grandes volúmenes de datos o en navegación
-web en tiempo real.
+No vuelven a ejecutar los procesos de scraping en Internet.
 
 ## 9. Control de versiones
 
-El proyecto utiliza Git y GitHub para registrar los cambios.
+Se utiliza Git para mantener el historial del proyecto.
 
-La rama `main` conserva la versión principal del proyecto.
+- `main`: rama principal.
+- `feature/ea2-devops`: desarrollo realizado durante EA2.
+- `feature/ea3-app`: desarrollo de la aplicación Streamlit durante EA3.
 
-La rama `feature/ea2-devops` se utiliza para desarrollar las
-mejoras correspondientes a la Evidencia de Aprendizaje 2.
+Las mejoras se incorporan mediante commits y pull requests.
 
-Los cambios se documentan mediante commits y se integrarán
-utilizando pull requests.
+## 10. Automatización con GitHub Actions
 
-## 10. Automatización y DevOps
+El archivo `.github/workflows/ci.yml` define el pipeline.
 
-La Evidencia de Aprendizaje 2 contempla la incorporación de:
+El workflow se ejecuta ante:
 
-- Pruebas automatizadas.
-- Integración continua mediante GitHub Actions.
-- Documentación del flujo de trabajo.
-- Un mecanismo de despliegue continuo apropiado para el proyecto.
+- Eventos `push` en las ramas configuradas.
+- Eventos `pull_request` dirigidos a `main`.
 
-Estas funcionalidades se documentarán conforme se implementen
-y verifiquen.
+El trabajo de validación realiza las siguientes operaciones:
 
-## 11. Limitaciones
+1. Descarga el repositorio.
+2. Configura Python 3.11.
+3. Instala las dependencias desde `requirements.txt`.
+4. Ejecuta las pruebas automatizadas con pytest.
+5. Genera el reporte HTML mediante `generar_reporte.py`.
+6. Verifica la existencia de `site/index.html`.
 
-El ejercicio utiliza una única publicación comercial y un
-documento HTML almacenado localmente.
+Cuando se ejecuta un `push` sobre `main`, el workflow también
+prepara y publica el reporte HTML mediante GitHub Pages.
 
-Los resultados no representan un estudio estadístico del mercado
-de teléfonos móviles ni permiten evaluar variaciones de precios
-en tiempo real.
+Los trabajos de despliegue dependen de la finalización satisfactoria
+de las validaciones anteriores.
 
-## 12. Finalidad académica
+## 11. Despliegue de servicios
 
-Proyecto desarrollado con fines de aprendizaje en la asignatura
-Programación para Análisis de Datos de la IU Digital.
+### GitHub Pages — EA2
+
+El reporte HTML generado automáticamente se publica en:
+
+https://miguel-mora.github.io/EA1_Web_Scraping/
+
+Su publicación se realiza mediante GitHub Actions después de
+integrar cambios en la rama `main`.
+
+### Streamlit Community Cloud — EA3
+
+La aplicación interactiva está disponible en:
+
+https://ea1webscraping-jkjjq2ayqrjxjhhcebtjsf.streamlit.app/
+
+Configuración utilizada:
+
+- Repositorio: `Miguel-Mora/EA1_Web_Scraping`.
+- Rama de despliegue: `feature/ea3-app`.
+- Archivo principal: `app.py`.
+- Dependencias: `requirements.txt`.
+- Servicio: Streamlit Community Cloud.
+
+Streamlit Community Cloud gestiona la construcción y publicación
+de la aplicación desde la rama conectada.
+
+Es importante distinguir este mecanismo del despliegue de
+GitHub Pages ejecutado directamente por GitHub Actions.
+
+## 12. Resultados
+
+Durante la EA1 se obtuvo un registro comercial por herramienta,
+con consistencia en los seis atributos seleccionados.
+
+La EA2 incorporó pruebas y automatización del reporte HTML.
+
+La EA3 amplió la solución mediante una interfaz interactiva y siete
+pruebas adicionales.
+
+La ejecución del pipeline de EA3 en GitHub Actions finalizó
+satisfactoriamente con **20 pruebas aprobadas**.
+
+## 13. Limitaciones
+
+El proyecto utiliza una sola publicación comercial y archivos CSV
+generados a partir de una copia HTML local.
+
+No realiza monitoreo continuo del mercado, scraping periódico ni
+actualización automática de precios.
+
+La aplicación representa los resultados históricos del ejercicio.
+
+## 14. Finalidad académica
+
+Proyecto desarrollado para la asignatura Programación para
+Análisis de Datos de la Institución Universitaria Digital
+de Antioquia.
