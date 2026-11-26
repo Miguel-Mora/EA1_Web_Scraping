@@ -1,10 +1,11 @@
-name: EA2 - Integracion y despliegue continuo
+name: EA3 - Integracion continua y despliegue
 
 on:
   push:
     branches:
       - main
       - feature/ea2-devops
+      - feature/ea3-app
 
   pull_request:
     branches:
@@ -30,7 +31,7 @@ jobs:
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pandas pytest
+          python -m pip install -r requirements.txt
 
       - name: Ejecutar pruebas automatizadas
         run: python -m pytest tests/ -v
